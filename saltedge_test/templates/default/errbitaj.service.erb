@@ -1,0 +1,17 @@
+[Unit]
+Description=errbit demo service
+Requires=mongod.service
+After=mongod.service network.target
+StartLimitIntervalSec=0
+[Service]
+EnvironmentFile=/home/aj/errbit/env
+Type=simple
+Restart=always
+RestartSec=1
+User=aj
+Group=aj
+WorkingDirectory=/home/aj/errbit
+ExecStart=/usr/local/bin/bundle exec "/usr/local/bin/puma -C /home/aj/errbit/config/puma.default.rb"
+
+[Install]
+WantedBy=multi-user.target
